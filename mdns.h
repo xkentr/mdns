@@ -459,7 +459,7 @@ mdns_socket_setup_ipv6(int sock, struct sockaddr_in6* saddr) {
 		saddr->sin6_len = sizeof(struct sockaddr_in6);
 #endif
 	} else {
-		unsigned int ifindex = 0;
+		unsigned int ifindex = saddr->sin6_scope_id;
 		setsockopt(sock, IPPROTO_IPV6, IPV6_MULTICAST_IF, (const char*)&ifindex, sizeof(ifindex));
 #ifndef _WIN32
 		saddr->sin6_addr = in6addr_any;
